@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("./fonts/icomoon.eot?2wb3sk");
+  src: url("./fonts/icomoon.eot?2wb3sk#iefix") format("embedded-opentype"),
+    url("./fonts/icomoon.ttf?2wb3sk") format("truetype"),
+    url("./fonts/icomoon.woff?2wb3sk") format("woff"),
+    url("./fonts/icomoon.svg?2wb3sk#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clear:before {
+  content: "\e900";
+}
+.icon-close:before {
+  content: "\e900";
+}
+.icon-log-out:before {
+  content: "\e906";
+}
+.icon-mail:before {
+  content: "\e901";
+}
+.icon-home:before {
+  content: "\e902";
+}
+.icon-phone:before {
+  content: "\e903";
+}
+.icon-envelope:before {
+  content: "\e904";
+}
+.icon-home3:before {
+  content: "\e905";
+}
+.icon-phone1:before {
+  content: "\e942";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-sphere:before {
+  content: "\e9c9";
+}
+
+*,*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* background: #f1f1f1; */
+  background: transparent;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Transitions */
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-from {
+  transform: translateX(240px);
+}
+
+.slide-leave-to {
+  transform: translateX(-240px);
+}
