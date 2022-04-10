@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal">
+    <div class="modal" @click.self="closeProfile">
       <div class="modal-content">
         <div class="image">
           <img
@@ -18,8 +18,10 @@
               ><span>{{ modalProfile.profile.name }}</span>
             </li>
             <li class="">
-              <span class="icon-wrapper"><i class="icon-envelope"></i></span
-              ><span>{{ modalProfile.profile.email }}</span>
+              <a :href="`${mailing()}`">
+                <span class="icon-wrapper"><i class="icon-envelope"></i></span
+                ><span>{{ modalProfile.profile.email }}</span>
+              </a>
             </li>
             <li class="">
               <span class="icon-wrapper"><i class="icon-phone1"></i></span
@@ -45,8 +47,32 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
+  data() {
+    return {
+      mail: {
+        subject: "We are hiring!",
+      },
+    };
+  },
   methods: {
     ...mapMutations(["closeProfile"]),
+    msgBody() {
+      return (
+        "Hello, " +
+        this.modalProfile.profile.name +
+        " We'd like to propose you an offer."
+      );
+    },
+    mailing() {
+      return (
+        "mailto:" +
+        this.modalProfile.profile.email +
+        "?subject=" +
+        this.mail.subject +
+        "&body=" +
+        this.msgBody()
+      );
+    },
   },
   computed: {
     ...mapState(["modalProfile"]),
@@ -130,7 +156,9 @@ export default {
       gap: 8px;
       height: 100%;
 
-      li {
+      li,
+      li a {
+        color: inherit;
         display: flex;
         gap: 8px;
         align-items: center;

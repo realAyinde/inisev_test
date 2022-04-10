@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import router from '../router';
+import { userService } from "../services/user";
+
 
 const API_URL = 'https://mock.follow.it/profiles.json'
 
@@ -50,6 +53,11 @@ export default new Vuex.Store({
         })
         .catch((error) => console.error("There was an error!", error));
     },
+    logout({commit}){
+      userService.logout()
+      commit("showAlert", "Logout Successfully!")
+      router.push('login');
+    }
   },
   modules: {},
 });

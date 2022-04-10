@@ -4,10 +4,10 @@
     <div class="login">
       <div>
         <p>SIGN IN TO YOUR ACCOUNT</p>
-        <form>
+        <form @submit.prevent="handleSubmit">
           <input type="text" v-model="username" />
           <input type="password" v-model="password" />
-          <a @click="login">SIGN IN</a>
+          <button :disabled="loading">SIGN IN</button>
         </form>
       </div>
     </div>
@@ -17,6 +17,8 @@
 <script>
 import alertBox from "@/components/alert-box.vue";
 import { mapMutations, mapState } from "vuex";
+
+import { userService } from "../services/user";
 export default {
   name: "LoginView",
   components: { alertBox },
@@ -24,15 +26,35 @@ export default {
     return {
       username: "",
       password: "",
+      submitted: false,
+      loading: false,
+      returnUrl: "",
+      error: "",
     };
   },
+  created() {
+    userService.logout();
+    this.returnUrl = this.$route.query.returnUrl || "/";
+  },
+
   methods: {
     ...mapMutations(["showAlert"]),
-    login() {
-      console.log(this.username);
-      if (this.username === "") {
-        this.showAlert("Please fill the username field");
+
+    handleSubmit() {
+      this.submitted = true;
+      const { username, password } = this;
+      if (!(username && password)) {
+        this.showAlert("Username and Password is required");
+        return;
       }
+      this.loading = true;
+      userService.login(username, password).then(
+        () => this.$router.push("/users"),
+        (error) => {
+          this.showAlert(error);
+          this.loading = false;
+        }
+      );
     },
   },
   computed: {

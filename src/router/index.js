@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -15,7 +15,7 @@ const routes = [
     name: 'users',
     component: () => import(/* webpackChunkName: "about" */ '../views/UsersView.vue')
   },
-  { path: '*', redirect: '/' }
+  { path: '*', redirect: '/users' }
 ]
 
 const router = new VueRouter({
@@ -24,20 +24,20 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const publicPages = ['/login'];
-//   const authRequired = !publicPages.includes(to.path);
-//   const loggedIn = localStorage.getItem('user');
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
 
-//   if (authRequired && !loggedIn) {
-//     return next({ 
-//       path: '/login', 
-//       query: { returnUrl: to.path } 
-//     });
-//   }
+  if (authRequired && !loggedIn) {
+    return next({ 
+      path: '/login', 
+      query: { returnUrl: to.path } 
+    });
+  }
 
-//   next();
-// })
+  next();
+})
 
 export default router

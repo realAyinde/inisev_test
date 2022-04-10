@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="logout">
-          <a href="">
+          <a @click="logout">
             <span><i class="icon-log-out"></i></span>
             <span>Admin</span>
           </a>
@@ -26,10 +26,11 @@
   </transition>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   methods: {
     ...mapMutations(["closeMenu"]),
+    ...mapActions(["logout"])
   },
 };
 </script>
@@ -90,6 +91,7 @@ export default {
     .logout {
       margin: 0 12px 0 0;
       a {
+          cursor: pointer;
         color: black;
         display: block;
         padding: 12px;
